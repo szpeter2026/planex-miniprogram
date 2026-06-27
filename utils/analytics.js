@@ -13,10 +13,9 @@
  */
 
 // ── 配置 ──────────────────────────────────
-// 本地开发：127.0.0.1:8010（开发者工具模拟器可用）
-// 真机调试：替换为电脑局域网 IP，如 192.168.x.x:8010
-// 生产环境：https://looma.genz.ltd
-var API_BASE = 'http://127.0.0.1:8010';
+// 生产环境：腾讯云 looma-zervi (Nginx → FastAPI :8010)
+// 开发环境：替换为 127.0.0.1:8010 使用本地 analytics 服务器
+var API_BASE = 'http://1.14.202.161';
 var ENDPOINTS = {
   pageview: API_BASE + '/v1/analytics/pageview',
   event:    API_BASE + '/v1/analytics/event',
