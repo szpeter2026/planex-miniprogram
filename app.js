@@ -22,10 +22,13 @@ App({
   },
 
   onLaunch() {
-    // 0. 启动计时
+    // 0. 挂载 analytics 到 app 实例，供页面通过 getApp() 调用
+    this.analytics = analytics;
+
+    // 1. 启动计时
     const startTime = Date.now();
 
-    // 1. 初始化云开发（测试模式下会超时，静默降级）
+    // 2. 初始化云开发（测试模式下会超时，静默降级）
     try {
       if (wx.cloud) {
         wx.cloud.init({
@@ -40,13 +43,13 @@ App({
       console.warn('[PlanetX] 云开发初始化失败（测试模式正常现象）:', e.message || e);
     }
 
-    // 2. 计算导航栏高度
+    // 3. 计算导航栏高度
     this._calcNavBarHeight();
 
-    // 3. 恢复登录态
+    // 4. 恢复登录态
     this._restoreSession();
 
-    // 4. 启动耗时上报
+    // 5. 启动耗时上报
     try {
       analytics.trackTiming('app_launch', Date.now() - startTime);
     } catch (e) {}
