@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/auth/auth",
+    "pages/hub/hub",
+    "pages/test/test"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0a0a1a",
+    "navigationBarTitleText": "PlanetX",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0a0a1a",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#00e5ff",
+    "backgroundColor": "#0a0a1a",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/hub/hub",
+        "text": "星图",
+        "iconPath": "images/tab-star.png",
+        "selectedIconPath": "images/tab-star-active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "发现",
+        "iconPath": "images/tab-discover.png",
+        "selectedIconPath": "images/tab-discover-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于匹配附近的星际探索者"
+    }
+  },
+  "requiredPrivateInfos": [],
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

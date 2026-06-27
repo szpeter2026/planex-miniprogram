@@ -1,0 +1,43 @@
+<!-- PlanetX 星际人格测试 — 8 题简化版 -->
+<view class="page">
+  <view class="progress-bar">
+    <view class="progress-fill" style="width: {{(currentQ + 1) / totalQs * 100}}%"></view>
+  </view>
+
+  <!-- 题目区 -->
+  <view class="question-card" wx:if="{{!done}}">
+    <view class="q-number">Q{{currentQ + 1}} / {{totalQs}}</view>
+    <view class="q-text">{{questions[currentQ].text}}</view>
+
+    <view class="options">
+      <view class="option" wx:for="{{questions[currentQ].options}}" wx:key="text"
+            data-value="{{item.value}}"
+            bindtap="onSelect">
+        <view class="option-emoji">{{item.emoji}}</view>
+        <view class="option-text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结果区 -->
+  <view class="result-card" wx:if="{{done}}">
+    <view class="result-emoji">{{result.emoji}}</view>
+    <view class="result-name">{{result.name}}</view>
+    <view class="result-tagline">{{result.tagline}}</view>
+    <view class="result-desc">{{result.desc}}</view>
+
+    <view class="result-stats">
+      <view class="stat" wx:for="{{result.categories}}" wx:key="label">
+        <view class="stat-label">{{item.label}}</view>
+        <view class="stat-bar">
+          <view class="stat-fill" style="width: {{item.score}}%"></view>
+        </view>
+        <text class="stat-value">{{item.score}}%</text>
+      </view>
+    </view>
+
+    <button class="btn btn-primary btn-block mt-40" bindtap="onFinish">
+      确认我的星际身份
+    </button>
+  </view>
+</view>

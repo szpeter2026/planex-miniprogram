@@ -1,0 +1,105 @@
+<!--
+  PlanetX 登录页
+  两步流程：1) 输入邀请码 2) 邮箱注册/Supabase登录
+-->
+<view class="page">
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">
+    <text>‹</text>
+  </view>
+
+  <!-- 品牌区 -->
+  <view class="brand">
+    <view class="brand-icon">🪐</view>
+    <view class="brand-name">PLANET X</view>
+    <view class="brand-sub">内测邀请制 · 限量开放</view>
+  </view>
+
+  <!-- Step 1: 邀请码 -->
+  <view class="form-card" wx:if="{{step === 1}}">
+    <view class="step-title">邀请码验证</view>
+    <view class="step-desc">请输入你的内测邀请码加入星际探索</view>
+
+    <input class="code-input" 
+           value="{{inviteCode}}" 
+           placeholder="请输入邀请码" 
+           placeholder-style="color:#444"
+           maxlength="12"
+           bindinput="onCodeInput"
+           focus="{{true}}" />
+
+    <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <button class="btn btn-primary btn-block" 
+            loading="{{loading}}"
+            disabled="{{!inviteCode}}"
+            bindtap="onValidateCode">
+      验证并进入
+    </button>
+  </view>
+
+  <!-- Step 2: 注册/登录 -->
+  <view class="form-card" wx:if="{{step === 2}}">
+    <view class="step-title">创建星际身份</view>
+    <view class="invite-tag">邀请码 {{inviteCode}} ✓</view>
+
+    <input class="field" 
+           value="{{email}}" 
+           placeholder="邮箱" 
+           type="text"
+           placeholder-style="color:#444"
+           bindinput="onEmailInput" />
+
+    <input class="field" 
+           value="{{password}}" 
+           placeholder="密码（6位以上）" 
+           type="password"
+           placeholder-style="color:#444"
+           bindinput="onPwdInput" />
+
+    <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <button class="btn btn-primary btn-block"
+            loading="{{loading}}"
+            disabled="{{!email || password.length < 6}}"
+            bindtap="onSignUp">
+      注册并进入
+    </button>
+
+    <view class="switch-link" bindtap="onSwitchLogin">
+      已有账号？点击登录
+    </view>
+  </view>
+
+  <!-- Step 2b: 登录模式 -->
+  <view class="form-card" wx:if="{{step === 3}}">
+    <view class="step-title">欢迎回来</view>
+
+    <input class="field" 
+           value="{{email}}" 
+           placeholder="邮箱" 
+           type="text"
+           placeholder-style="color:#444"
+           bindinput="onEmailInput" />
+
+    <input class="field" 
+           value="{{password}}" 
+           placeholder="密码" 
+           type="password"
+           placeholder-style="color:#444"
+           bindinput="onPwdInput" />
+
+    <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <button class="btn btn-primary btn-block"
+            loading="{{loading}}"
+            disabled="{{!email || !password}}"
+            bindtap="onSignIn">
+      登录
+    </button>
+
+    <view class="switch-link" bindtap="onSwitchSignUp">
+      没有账号？返回注册
+    </view>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+/** 小程序全局样式 — PlanetX 深空主题 */
+
+/* ===== 全局变量 ===== */
+page {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #12122a;
+  --bg-card: rgba(18, 18, 42, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #8888aa;
+  --accent: #00e5ff;
+  --accent-glow: rgba(0, 229, 255, 0.3);
+  --accent2: #7c3aed;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+/* ===== 按钮 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  color: #fff;
+  box-shadow: 0 4rpx 20rpx var(--accent-glow);
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2rpx solid var(--accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 12rpx 28rpx;
+  font-size: 24rpx;
+  border-radius: 12rpx;
+}
+
+/* ===== 卡片 ===== */
+.card {
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  border: 1rpx solid var(--border);
+  padding: 32rpx;
+  backdrop-filter: blur(20rpx);
+}
+
+/* ===== 通用工具类 ===== */
+.text-center { text-align: center; }
+.text-accent { color: var(--accent); }
+.text-secondary { color: var(--text-secondary); }
+.mt-20 { margin-top: 20rpx; }
+.mt-40 { margin-top: 40rpx; }
+.mb-20 { margin-bottom: 20rpx; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

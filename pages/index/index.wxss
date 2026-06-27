@@ -1,0 +1,142 @@
+/* PlanetX 首页样式 */
+
+.page {
+  min-height: 100vh;
+  background-color: #0a0a1a;
+  background-image: linear-gradient(180deg, #0a0a1a 0%, #12122a 50%, #0a0a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+  padding-bottom: 180rpx;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 星空背景 */
+.stars-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  width: 4rpx;
+  height: 4rpx;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* 主内容 */
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600rpx;
+  height: calc(100vh - 200rpx);
+}
+
+.planet-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}
+
+.brand-name {
+  font-size: 52rpx;
+  font-weight: 800;
+  letter-spacing: 12rpx;
+  color: #00e5ff;
+  margin-bottom: 12rpx;
+}
+
+.brand-tagline {
+  font-size: 28rpx;
+  color: #8888aa;
+  margin-bottom: 60rpx;
+}
+
+/* 状态卡片 */
+.status-card {
+  width: 100%;
+  background: rgba(18, 18, 42, 0.8);
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  padding: 28rpx 36rpx;
+  margin-bottom: 40rpx;
+}
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 0;
+}
+.status-label {
+  color: #8888aa;
+  font-size: 26rpx;
+}
+.status-value {
+  color: #00e5ff;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* 游客提示 */
+.guest-hint {
+  text-align: center;
+  color: #8888aa;
+  font-size: 26rpx;
+  margin-bottom: 40rpx;
+  line-height: 1.8;
+}
+
+/* CTA 按钮组 */
+.cta-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.cta-group button {
+  width: 100%;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  border: none;
+}
+.cta-group button::after {
+  border: none;
+}
+
+/* 社交证明 */
+.social-proof {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+.proof-num {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #00e5ff;
+}
+.proof-label {
+  font-size: 24rpx;
+  color: #8888aa;
+}

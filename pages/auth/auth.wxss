@@ -1,0 +1,116 @@
+/* PlanetX 登录页 */
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a1a 0%, #12122a 50%, #0a0a1a 100%);
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  color: var(--text-secondary);
+  margin-bottom: 40rpx;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+.brand-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+.brand-name {
+  font-size: 40rpx;
+  font-weight: 800;
+  letter-spacing: 8rpx;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12rpx;
+}
+.brand-sub {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.form-card {
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  border: 1rpx solid var(--border);
+  padding: 40rpx 32rpx;
+}
+
+.step-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+.step-desc {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 32rpx;
+}
+
+.invite-tag {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  margin-bottom: 32rpx;
+}
+
+/* 邀请码输入 */
+.code-input {
+  width: 100%;
+  height: 88rpx;
+  background: rgba(255,255,255,0.06);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 8rpx;
+  margin-bottom: 24rpx;
+}
+
+/* 通用输入框 */
+.field {
+  width: 100%;
+  height: 88rpx;
+  background: rgba(255,255,255,0.06);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.error-msg {
+  color: var(--danger);
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.form-card button {
+  margin-top: 12rpx;
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 32rpx;
+  font-size: 24rpx;
+  color: var(--accent);
+}

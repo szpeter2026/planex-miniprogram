@@ -1,0 +1,119 @@
+/* PlanetX Hub */
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a1a 0%, #12122a 50%, #0a0a1a 100%);
+  padding: 40rpx 32rpx;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.avatar {
+  font-size: 48rpx;
+}
+.user-name {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.user-level {
+  font-size: 22rpx;
+  color: var(--accent);
+}
+
+/* 舰队卡片 */
+.fleet-card {
+  background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(124,58,237,0.08));
+}
+.fleet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.fleet-name {
+  font-size: 32rpx;
+  font-weight: 800;
+}
+.fleet-code {
+  font-size: 20rpx;
+  color: var(--accent);
+  background: rgba(0,229,255,0.1);
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+}
+.fleet-members {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+}
+.member-avatar {
+  font-size: 48rpx;
+}
+.member-slot {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  border: 2rpx dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: var(--text-secondary);
+}
+
+/* 空状态 */
+.empty-fleet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 32rpx;
+}
+.empty-icon { font-size: 80rpx; margin-bottom: 20rpx; }
+.empty-title { font-size: 30rpx; font-weight: 700; margin-bottom: 12rpx; }
+.empty-desc { font-size: 24rpx; color: var(--text-secondary); text-align: center; }
+
+/* 任务列表 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-bottom: 24rpx;
+}
+.mission {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--border);
+}
+.mission:last-child { border-bottom: none; }
+.mission-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.mission-icon { font-size: 36rpx; }
+.mission-name { font-size: 26rpx; }
+.mission-name.done { color: var(--text-secondary); text-decoration: line-through; }
+.mission-reward { font-size: 20rpx; color: var(--warning); }
+
+/* 发现 */
+.discover-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.discover-icon { font-size: 48rpx; }
+.discover-title { font-size: 26rpx; font-weight: 600; }
+.discover-desc { font-size: 22rpx; color: var(--text-secondary); }

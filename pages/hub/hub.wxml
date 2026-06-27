@@ -1,0 +1,66 @@
+<!-- PlanetX 星图 Hub -->
+<view class="page">
+  <view class="header">
+    <view class="user-badge" wx:if="{{profile}}">
+      <view class="avatar">{{profile.identity === 'captain' ? '👨‍✈️' : profile.identity === 'wanderer' ? '🌌' : '🚀'}}</view>
+      <view class="user-info">
+        <view class="user-name">{{identityLabel}}</view>
+        <view class="user-level">Lv.{{level}} · {{xp}} XP</view>
+      </view>
+    </view>
+    <view class="header-actions">
+      <button class="btn btn-sm btn-ghost" bindtap="goSettings">⚙️</button>
+    </view>
+  </view>
+
+  <!-- 舰队卡片 -->
+  <view class="card fleet-card" wx:if="{{fleet}}">
+    <view class="fleet-header">
+      <text class="fleet-name">{{fleet.name}}</text>
+      <text class="fleet-code">邀请码：{{fleet.invite_code}}</text>
+    </view>
+    <view class="fleet-members">
+      <text wx:for="{{fleet.members}}" wx:key="id" class="member-avatar">{{item.emoji || '👤'}}</text>
+      <text wx:if="{{fleet.members.length < 3}}" class="member-slot">+</text>
+    </view>
+    <view class="fleet-actions">
+      <button class="btn btn-sm btn-outline" bindtap="copyInviteCode">📋 复制邀请码</button>
+    </view>
+  </view>
+
+  <!-- 空状态 — 还没组队 -->
+  <view class="card empty-fleet" wx:if="{{!fleet}}">
+    <view class="empty-icon">🛸</view>
+    <view class="empty-title">尚未组建舰队</view>
+    <view class="empty-desc">完成人格测试后，创建属于自己的星际舰队</view>
+    <button class="btn btn-primary btn-block mt-40" bindtap="goTest">
+      {{tested ? '创建舰队' : '开始人格测试'}}
+    </button>
+  </view>
+
+  <!-- 任务列表 -->
+  <view class="card mt-40">
+    <view class="section-title">🎯 航行任务</view>
+    <view class="mission" wx:for="{{missions}}" wx:key="id">
+      <view class="mission-left">
+        <text class="mission-icon">{{item.icon}}</text>
+        <view class="mission-info">
+          <text class="mission-name {{item.done ? 'done' : ''}}">{{item.name}}</text>
+          <text class="mission-reward">+{{item.xp}} XP</text>
+        </view>
+      </view>
+      <text class="mission-status">{{item.done ? '✅' : '→'}}</text>
+    </view>
+  </view>
+
+  <!-- 发现入口 -->
+  <view class="card mt-40" bindtap="goDiscover">
+    <view class="discover-row">
+      <text class="discover-icon">🔭</text>
+      <view class="discover-info">
+        <text class="discover-title">星际匹配 · 新功能即将上线</text>
+        <text class="discover-desc">基于人格维度的智能匹配，找到你的星际同伴</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<!--
+  PlanetX 首页 — 星际人格测试入口
+  包含：品牌标识、测试入口、最新状态
+-->
+<view class="page">
+  <!-- 星空背景粒子 -->
+  <view class="stars-bg">
+    <view class="star" wx:for="{{stars}}" wx:key="index"
+          style="left: {{item.x}}%; top: {{item.y}}%; animation-delay: {{item.delay}}s; opacity: {{item.opacity}}">
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <scroll-view scroll-y class="hero" enhanced show-scrollbar="{{false}}">
+    <view class="planet-icon">🪐</view>
+    <view class="brand-name">PLANET X</view>
+    <view class="brand-tagline">你的职业飞行器</view>
+
+    <!-- 状态卡片 -->
+    <view class="status-card" wx:if="{{loggedIn}}">
+      <view class="status-row">
+        <text class="status-label">身份</text>
+        <text class="status-value">{{identityLabel || '未知'}}</text>
+      </view>
+      <view class="status-row">
+        <text class="status-label">等级</text>
+        <text class="status-value">Lv.{{level || 1}} · {{xp || 0}} XP</text>
+      </view>
+    </view>
+
+    <!-- 未登录提示 -->
+    <view class="guest-hint" wx:if="{{!loggedIn}}">
+      <text>发现你的星际身份，开启一场职业探索之旅 🌌</text>
+    </view>
+
+    <!-- CTA 按钮 -->
+    <view class="cta-group">
+      <button class="btn btn-primary btn-block" wx:if="{{!loggedIn}}"
+              bindtap="goAuth">
+        进入星际空间
+      </button>
+
+      <button class="btn btn-primary btn-block" wx:if="{{loggedIn && !tested}}"
+              bindtap="goTest">
+        开始星际人格测试
+      </button>
+
+      <button class="btn btn-outline btn-block" wx:if="{{loggedIn && tested}}"
+              bindtap="goHub">
+        返回星图 {{fleetCount > 0 ? '👥' + fleetCount : ''}}
+      </button>
+    </view>
+
+    <!-- 社交证明 -->
+    <view class="social-proof">
+      <text class="proof-num">{{totalExplorers}}</text>
+      <text class="proof-label">位星际探索者已加入</text>
+    </view>
+  </scroll-view>
+</view>
