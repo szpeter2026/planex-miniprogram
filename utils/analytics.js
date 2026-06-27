@@ -15,7 +15,7 @@
 // ── 配置 ──────────────────────────────────
 // 生产环境：腾讯云 looma-zervi (Nginx → FastAPI :8010)
 // 开发环境：替换为 127.0.0.1:8010 使用本地 analytics 服务器
-var API_BASE = 'http://1.14.202.161';
+var API_BASE = 'https://api.genz.ltd';
 var ENDPOINTS = {
   pageview: API_BASE + '/v1/analytics/pageview',
   event:    API_BASE + '/v1/analytics/event',
