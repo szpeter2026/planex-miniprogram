@@ -3,6 +3,7 @@
  */
 
 const supabase = require('../../utils/supabase');
+const config = require('../../utils/config');
 const analytics = require('../../utils/analytics');
 const app = getApp();
 
@@ -77,13 +78,16 @@ Page({
    * 注册
    */
   async onSignUp() {
-    const { email, password } = this.data;
+    const { email, password, inviteCode } = this.data;
     this.setData({ loading: true, errorMsg: '' });
     analytics.trackEvent('signup_attempt', { category: 'auth' });
 
     try {
       const { jwt, user } = await supabase.signUp(email, password);
       analytics.trackEvent('signup_success', { category: 'auth', meta: { user_id: user.id } });
+
+      // ── 后台同步到 Looma SQLite + 递增 use_count（不阻塞主流程）──
+      this._syncAfterSignUp(user, inviteCode);
 
       // 检查是否需要邮件确认
       if (!jwt) {
@@ -116,6 +120,46 @@ Page({
       this.setData({
         errorMsg: msg,
         loading: false,
+      });
+    }
+  },
+
+  /**
+   * 后台同步：用户 → Looma SQLite + 邀请码 use_count 递增
+   * 异步执行，失败不影响注册流程
+   */
+  _syncAfterSignUp(user, inviteCode) {
+    // 1) 同步用户到 Looma SQLite
+    wx.request({
+      url: config.API_BASE + '/v1/auth/sync',
+      method: 'POST',
+      header: { 'Content-Type': 'application/json' },
+      data: {
+        supabase_uid: user.id,
+        email: user.email,
+        tier: 'free',
+      },
+      success(res) {
+        console.log('[Auth] sync result:', res.data);
+      },
+      fail(err) {
+        console.warn('[Auth] sync failed (non-blocking):', err);
+      },
+    });
+
+    // 2) 递增邀请码 use_count
+    if (inviteCode) {
+      wx.request({
+        url: config.API_BASE + '/v1/referral/use',
+        method: 'POST',
+        header: { 'Content-Type': 'application/json' },
+        data: { code: inviteCode },
+        success(res) {
+          console.log('[Auth] use result:', res.data);
+        },
+        fail(err) {
+          console.warn('[Auth] use failed (non-blocking):', err);
+        },
       });
     }
   },

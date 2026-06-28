@@ -5,8 +5,7 @@
  * 直接调 Supabase REST API + GoTrue Auth API
  */
 
-const SUPABASE_URL = 'https://ihuddnluwggbdppheixu.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBiYWJhc2UiLCJyZWYiOiJpaHVkZG5sdXd3Z2diZHBwcGhlaXh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NDcwNDEsImV4cCI6MjA5ODAyMzA0MX0._nd6pJvhMjWoqt4CtBW344UC59sILk31PaMU-NYc8fk';
+const { SUPABASE_URL, SUPABASE_KEY } = require('./config');
 
 /**
  * 通用 Supabase REST 请求
