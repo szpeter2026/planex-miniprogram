@@ -6,7 +6,7 @@
  */
 
 const SUPABASE_URL = 'https://ihuddnluwggbdppheixu.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_O6vccVYBMxJrN_Vq2Td4Nw_2kHNQHu7';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBiYWJhc2UiLCJyZWYiOiJpaHVkZG5sdXd3Z2diZHBwcGhlaXh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NDcwNDEsImV4cCI6MjA5ODAyMzA0MX0._nd6pJvhMjWoqt4CtBW344UC59sILk31PaMU-NYc8fk';
 
 /**
  * 通用 Supabase REST 请求
@@ -43,11 +43,19 @@ function supabaseRequest(path, options = {}) {
 
 /**
  * 注册（邮箱+密码）
+ * 返回 { jwt, user } — 如果开启了邮件确认，jwt 为 null
  */
 function signUp(email, password) {
   return supabaseRequest('/auth/v1/signup', {
     method: 'POST',
     body: { email, password },
+  }).then(data => {
+    // 开启邮件确认时，响应体就是 user 对象（无 access_token）
+    // 关闭邮件确认时，响应体含 access_token + user
+    return {
+      jwt: data.access_token || null,
+      user: data.user || data,
+    };
   });
 }
 

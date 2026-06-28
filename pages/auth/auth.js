@@ -85,36 +85,36 @@ Page({
       const { jwt, user } = await supabase.signUp(email, password);
       analytics.trackEvent('signup_success', { category: 'auth', meta: { user_id: user.id } });
 
-      // 创建 profile
-      const profileData = {
-        id: user.id,
-        level: 1,
-        xp: 0,
-        xp_to_next: 100,
-      };
-
-      try {
-        await supabase.from('profiles').insert(profileData);
-      } catch (profileErr) {
-        console.warn('[Auth] profile 插入失败（可能已存在）', profileErr);
+      // 检查是否需要邮件确认
+      if (!jwt) {
+        // 开启了邮件确认 — 提示用户查收邮件
+        wx.showModal({
+          title: '注册成功',
+          content: '请前往邮箱 ' + email + ' 查收确认邮件，确认后即可登录。',
+          showCancel: false,
+          confirmText: '去登录',
+          success: () => {
+            this.setData({ step: 3, loading: false, password: '' });
+          },
+        });
+        return;
       }
 
-      // 加载完整 profile
+      // 无需邮件确认 — 直接登录
+      // profiles 表由触发器 on_auth_user_created 自动插入，无需前端创建
       let profile = null;
       try {
         profile = await supabase.from('profiles').single('id', user.id);
       } catch (e) { /* 忽略 */ }
 
-      // 保存 session
       app.setSession(jwt, user, profile);
-
-      // 跳转
       wx.reLaunch({ url: '/pages/index/index' });
     } catch (e) {
       console.error('[Auth] 注册失败', e);
       analytics.trackEvent('signup_failed', { category: 'auth', label: (e && e.message) || '' });
+      const msg = (e && e.message && e.message.msg) || (e && e.message) || '注册失败，请重试';
       this.setData({
-        errorMsg: e.message || '注册失败，请重试',
+        errorMsg: msg,
         loading: false,
       });
     }
@@ -142,8 +142,9 @@ Page({
     } catch (e) {
       console.error('[Auth] 登录失败', e);
       analytics.trackEvent('signin_failed', { category: 'auth', label: (e && e.message) || '' });
+      const msg = (e && e.message && e.message.msg) || (e && e.message) || '登录失败，请检查邮箱和密码';
       this.setData({
-        errorMsg: e.message || '登录失败，请检查邮箱和密码',
+        errorMsg: msg,
         loading: false,
       });
     }
